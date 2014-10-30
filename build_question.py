@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import os
 import sys
 import urllib2
@@ -25,7 +27,6 @@ def gen_cpp_content(problem_name, problem_url, problem_desc):
 
     content += "#include <iostream>\n"
     content += "#include <gtest/gtest.h>\n"
-    content += "#include <gmock/gmock.h>\n"
     content += "\n"
     content += "using namespace std;\n"
     content += "using namespace testing;\n"
@@ -40,11 +41,11 @@ def gen_cpp_content(problem_name, problem_url, problem_desc):
     content += "}\n"
     content += "\n"
     
-    content += "int main(int argc, char **argv) {\n"
-    content += "    ::testing::InitGoogleMock(&argc, argv);\n"
-    content += "    return RUN_ALL_TESTS();\n"
-    content += "}\n"
-
+#    content += "int main(int argc, char **argv) {\n"
+#    content += "    ::testing::InitGoogleMock(&argc, argv);\n"
+#    content += "    return RUN_ALL_TESTS();\n"
+#    content += "}\n"            
+    
     return content
 
 def gen_cpp_file(problem_dir, problem_name, problem_url, problem_desc):
@@ -54,11 +55,17 @@ def gen_cpp_file(problem_dir, problem_name, problem_url, problem_desc):
     f.close()
 
 def gen_build_script(problem_dir, problem_name):
+    gtest_dir = os.path.join(problem_dir, "../gtest")
+    gtest_inc = os.path.join(gtest_dir, "include")
+    gtest_objs = [os.path.join(gtest_dir, "lib/gtest-all.o"),
+                  os.path.join(gtest_dir, "lib/gtest_main.o")]
     content = "#!/bin/sh\n"
-    content += ("g++ %s.cpp -o %s -I/usr/local/include/" +
-                " -L/usr/local/lib64 /usr/local/lib64/libgmock.a /usr/local/lib64/libgtest.a -lpthread -ldl" +
+    content += ("g++ %s.cpp -o %s -I%s" +
+                " %s  -lpthread -ldl" +
                 "&&./%s") % (
-        problem_name, problem_name, problem_name)
+        problem_name, problem_name,
+        gtest_inc, ' '.join(gtest_objs),
+        problem_name)
     script_file = os.path.join(problem_dir, "build.sh")
     f = open(script_file, 'w')
     f.write(content)

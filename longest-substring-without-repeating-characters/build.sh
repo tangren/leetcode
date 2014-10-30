@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ longest-substring-without-repeating-characters.cpp -o longest-substring-without-repeating-characters -I/Users/zhouhb/Work/git/leetcode/longest-substring-without-repeating-characters/../gtest/include /Users/zhouhb/Work/git/leetcode/longest-substring-without-repeating-characters/../gtest/lib/gtest-all.o /Users/zhouhb/Work/git/leetcode/longest-substring-without-repeating-characters/../gtest/lib/gtest_main.o  -lpthread -ldl&&./longest-substring-without-repeating-characters
