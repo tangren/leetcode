@@ -13,30 +13,24 @@ using namespace testing;
 class Solution {
 public:
     int lengthOfLongestSubstring(const string &s) {
-        size_t maxLen = 0;
-        size_t startPos = 0;
-        while (startPos < s.length()) {
-            size_t len = findSubstring(s, startPos);
-            maxLen = maxLen > len ? maxLen : len;
-            startPos += len;
-        }
-        return maxLen;
-    }
-
-    size_t findSubstring(const string &s, size_t startPos) {
-        char flags[128];
-        memset(flags, 0, sizeof(flags));
-        size_t len = 0;
-        for (size_t i = startPos; i < s.length(); i++) {
-            const char& c = s[i];
-            if (flags[c] == 1) {
-                break;
+        int maxLen = 0;
+        vector<int> posIdx(256, -1);
+        int curLen = 0;
+        int startPos = 0;
+        for (int pos = 0; pos < (int)s.length(); pos++) {
+            const char &c = s[pos];
+            if (posIdx[c] >= startPos) {
+                maxLen = maxLen > curLen ? maxLen : curLen;
+                curLen -= (posIdx[c] - startPos);
+                startPos = posIdx[c] + 1;
+                posIdx[c] = pos;
             } else {
-                flags[c] = 1;
-                len++;
+                curLen++;
+                posIdx[c] = pos;
             }
         }
-        return len;
+        
+        return maxLen > curLen ? maxLen : curLen;
     }
 };
 
@@ -53,4 +47,6 @@ TEST(SolutionTest, testSimple) {
     ASSERT_EQ(3, s.lengthOfLongestSubstring("abcabcbb"));
     ASSERT_EQ(1, s.lengthOfLongestSubstring("bbbbbbb"));
     ASSERT_EQ(6, s.lengthOfLongestSubstring("abcdef"));
+    ASSERT_EQ(12, s.lengthOfLongestSubstring("wlrbbmqbhcdarzowkkyhiddqscdxrjmowfrxsjybldbefsarcbynecdyggxxpklorellnmpapqfwkhopkmco"));
+    ASSERT_EQ(12, s.lengthOfLongestSubstring("hnwnkuewhsqmgbbuqcljjivswmdkqtbxixmvtrrbljptnsnfwzqfjmafadrrwsofsbcnuvqhffbsaqxwpqcac"));
 }
