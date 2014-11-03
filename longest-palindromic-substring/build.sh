@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ longest-palindromic-substring.cpp -o longest-palindromic-substring -I/home/zhouhb/workdir/leetcode/longest-palindromic-substring/../gtest/include /home/zhouhb/workdir/leetcode/longest-palindromic-substring/../gtest/lib/gtest-all.o /home/zhouhb/workdir/leetcode/longest-palindromic-substring/../gtest/lib/gtest_main.o  -lpthread -ldl&&./longest-palindromic-substring
