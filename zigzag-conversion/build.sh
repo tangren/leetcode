@@ -1,0 +1,2 @@
+#!/bin/sh
+g++ zigzag-conversion.cpp -o zigzag-conversion -I/home/zhouhb/workdir/leetcode/zigzag-conversion/../gtest/include /home/zhouhb/workdir/leetcode/zigzag-conversion/../gtest/lib/gtest-all.o /home/zhouhb/workdir/leetcode/zigzag-conversion/../gtest/lib/gtest_main.o  -lpthread -ldl&&./zigzag-conversion
