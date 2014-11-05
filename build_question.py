@@ -41,11 +41,6 @@ def gen_cpp_content(problem_name, problem_url, problem_desc):
     content += "}\n"
     content += "\n"
     
-#    content += "int main(int argc, char **argv) {\n"
-#    content += "    ::testing::InitGoogleMock(&argc, argv);\n"
-#    content += "    return RUN_ALL_TESTS();\n"
-#    content += "}\n"            
-    
     return content
 
 def gen_cpp_file(problem_dir, problem_name, problem_url, problem_desc):
@@ -55,7 +50,7 @@ def gen_cpp_file(problem_dir, problem_name, problem_url, problem_desc):
     f.close()
 
 def gen_build_script(problem_dir, problem_name):
-    gtest_dir = os.path.join(problem_dir, "../gtest")
+    gtest_dir = os.path.join("../gtest")
     gtest_inc = os.path.join(gtest_dir, "include")
     gtest_objs = [os.path.join(gtest_dir, "lib/gtest-all.o"),
                   os.path.join(gtest_dir, "lib/gtest_main.o")]
