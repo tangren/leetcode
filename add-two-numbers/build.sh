@@ -1,2 +1,2 @@
 #!/bin/sh
-g++ add-two-numbers.cpp -o add-two-numbers -I/Users/zhouhb/Work/git/leetcode/add-two-numbers/../gtest/include /Users/zhouhb/Work/git/leetcode/add-two-numbers/../gtest/lib/gtest-all.o /Users/zhouhb/Work/git/leetcode/add-two-numbers/../gtest/lib/gtest_main.o  -lpthread -ldl&&./add-two-numbers
+g++ add-two-numbers.cpp -o add-two-numbers.out -I/Users/zhouhb/Work/git/leetcode/add-two-numbers/../gtest/include ../gtest/lib/gtest-all.o ../gtest/lib/gtest_main.o  -lpthread -ldl&&./add-two-numbers.out
