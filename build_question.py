@@ -55,9 +55,9 @@ def gen_build_script(problem_dir, problem_name):
     gtest_objs = [os.path.join(gtest_dir, "lib/gtest-all.o"),
                   os.path.join(gtest_dir, "lib/gtest_main.o")]
     content = "#!/bin/sh\n"
-    content += ("g++ %s.cpp -o %s -I%s" +
+    content += ("g++ %s.cpp -o %s.out -I%s" +
                 " %s  -lpthread -ldl" +
-                "&&./%s") % (
+                "&&./%s.out") % (
         problem_name, problem_name,
         gtest_inc, ' '.join(gtest_objs),
         problem_name)
